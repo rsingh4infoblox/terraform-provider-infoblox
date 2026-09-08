@@ -43,3 +43,31 @@ case "filters" {
   }
 
 }
+
+case "tag_filters" {
+  backend        = "uddi"
+  parallel       = true
+  min_tf_version = "1.14.0"
+
+  step {
+    uddi {
+      name            = "{{random}}"
+      items_described = [{ item = "{{random2}}.com", description = "Tagged Domain" }]
+      type            = "custom_list"
+      tags            = { tag1 = "{{random3}}" }
+    }
+  }
+
+  step {
+    query            = true
+    provider         = infoblox
+    include_resource = true
+    filter {
+      type = "tag_filters"
+      values = {
+        tag1 = "uddi.tags.tag1"
+      }
+    }
+  }
+
+}

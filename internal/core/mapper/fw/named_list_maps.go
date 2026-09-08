@@ -15,18 +15,12 @@ var NamedListUDDIFieldMap = map[string]string{
 	"UDDI.Type":            "Type",
 }
 
-// TODO: only searchable fields should be included here
-// NamedListFilterFieldMap maps infoblox filter keys to backend-specific API filter field names
+// NamedListFilterFieldMap maps infoblox filter keys to backend-specific API filter field names.
+// Only fields the FW API actually accepts in _filter are listed here: type, items, items_described.
 var NamedListFilterFieldMap = map[core.BackendType]map[string]string{
 	core.BackendUDDI: {
-		"uddi.confidence_level": "confidence_level",
-		"uddi.description":      "description",
-		"uddi.items":            "items",
-		"uddi.items_described":  "items_described",
-		"uddi.name":             "name",
-		"uddi.policies":         "policies",
-		"uddi.tags":             "tags",
-		"uddi.threat_level":     "threat_level",
-		"uddi.type":             "type",
+		"uddi.items":           "items",
+		"uddi.items_described": "items_described",
+		"uddi.type":            "type",
 	},
 }
